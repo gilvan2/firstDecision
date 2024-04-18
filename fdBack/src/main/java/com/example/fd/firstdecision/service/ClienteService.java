@@ -1,9 +1,12 @@
 package com.example.fd.firstdecision.service;
 
+import com.example.fd.firstdecision.exception.EmailAlreadyExistsException;
 import com.example.fd.firstdecision.orm.Cliente;
 import com.example.fd.firstdecision.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @Service
 public class ClienteService {
@@ -15,11 +18,10 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public boolean existeEmail(Cliente cliente){
+    public void existeEmail(Cliente cliente){
+
         if(this.clienteRepository.existsByEmail(cliente.getEmail())){
-            return true;
-        }else{
-            return false;
+            throw new EmailAlreadyExistsException("Este e-mail já está em uso.");
         }
     }
 
