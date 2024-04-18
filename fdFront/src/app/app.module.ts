@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CadastrosComponent } from './cadastros/cadastros.component';
 import { ClientesComponent } from './cadastros/clientes/clientes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
