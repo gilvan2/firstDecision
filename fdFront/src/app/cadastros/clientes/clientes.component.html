@@ -1,0 +1,41 @@
+<form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" formControlName="nome">
+      <div *ngIf="clienteForm.get('nome')?.invalid && (clienteForm.get('nome')?.dirty || clienteForm.get('nome')?.touched)">
+        <div *ngIf="clienteForm.get('nome')?.errors?.['required']">Nome é obrigatório.</div>
+        <div *ngIf="clienteForm.get('nome')?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres.</div>
+        <div *ngIf="clienteForm.get('nome')?.errors?.['maxlength']">Nome deve ter no máximo 50 caracteres.</div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="clienteForm.get('email')?.invalid && (clienteForm.get('email')?.dirty || clienteForm.get('email')?.touched)">
+        <div *ngIf="clienteForm.get('email')?.errors?.['required']">E-mail é obrigatório.</div>
+        <div *ngIf="clienteForm.get('email')?.errors?.['email']">E-mail inválido.</div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" formControlName="senha">
+      <div *ngIf="clienteForm.get('senha')?.invalid && (clienteForm.get('senha')?.dirty || clienteForm.get('senha')?.touched)">
+        <div *ngIf="clienteForm.get('senha')?.errors?.['required']">Senha é obrigatória.</div>
+        <div *ngIf="clienteForm.get('senha')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres.</div>
+        <div *ngIf="clienteForm.get('senha')?.errors?.['maxlength']">Senha deve ter no máximo 20 caracteres.</div>
+      </div>
+    </div>
+    
+    <div>
+      <label for="confirmacaoSenha">Confirmação de Senha:</label>
+      <input type="password" id="confirmacaoSenha" formControlName="confirmacaoSenha">
+      <div *ngIf="clienteForm.get('confirmacaoSenha')?.invalid && (clienteForm.get('confirmacaoSenha')?.dirty || clienteForm.get('confirmacaoSenha')?.touched)">
+        <div *ngIf="clienteForm.get('confirmacaoSenha')?.errors?.['required']">Confirmação de senha é obrigatória.</div>
+        <div *ngIf="clienteForm.get('confirmacaoSenha')?.errors?.['mismatch']">As senhas não coincidem.</div>
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="clienteForm.invalid">Enviar</button>
+  </form>
