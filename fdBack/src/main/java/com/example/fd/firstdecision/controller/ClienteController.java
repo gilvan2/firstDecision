@@ -17,6 +17,17 @@ public class ClienteController {
     @PostMapping("cliente/registrar")
     public ResponseEntity<String> registrarCliente(@RequestBody Cliente cliente) {
 
+        if(clienteService.validarSenha(cliente)){
+            return ResponseEntity.badRequest().body("A senha e a confirmação de senha não correspondem.");
+        }
+
+        if(clienteService.existeEmail(cliente)){
+            return ResponseEntity.badRequest().body("Este e-mail já está em uso.");
+        }
+
+        clienteService.salvarCliente(cliente);
+
         return ResponseEntity.ok("Usuário registrado com sucesso.");
     }
+
 }
