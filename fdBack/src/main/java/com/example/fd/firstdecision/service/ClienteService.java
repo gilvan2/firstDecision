@@ -16,11 +16,15 @@ public class ClienteService {
     }
 
     public boolean existeEmail(Cliente cliente){
-        return false;
+        if(this.clienteRepository.existsByEmail(cliente.getEmail())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean validarSenha(Cliente cliente){
-        return false;
+        return cliente.getConfirmSenha();
     }
 
     public void salvarCliente(Cliente cliente){

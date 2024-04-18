@@ -17,7 +17,7 @@ public class ClienteController {
     @PostMapping("cliente/registrar")
     public ResponseEntity<String> registrarCliente(@RequestBody Cliente cliente) {
 
-        if(clienteService.validarSenha(cliente)){
+        if(!clienteService.validarSenha(cliente)){
             return ResponseEntity.badRequest().body("A senha e a confirmação de senha não correspondem.");
         }
 

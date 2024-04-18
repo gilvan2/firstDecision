@@ -61,5 +61,7 @@ public class Cliente {
 
     public boolean getConfirmSenha() {
         return true;
+
+        //TO DO Implementar lógica para confirmar a senha
     }
 }
